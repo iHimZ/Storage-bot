@@ -3,22 +3,22 @@ import os
 from telethon import TelegramClient, events
 import asyncio
 
-# Load configuration
+
 with open("config.json", "r") as config_file:
     config = json.load(config_file)
 
-# Extract configuration values
+
 BOT_TOKEN = config.get("bot_token")
 OWNER_ID = config.get("owner_id")
 
-# Ensure mandatory fields are set
+
 if not OWNER_ID or not BOT_TOKEN:
     raise ValueError("Please set 'owner_id' and 'bot_token' in config.json.")
 
-# Initialize the Telegram bot client
+
 client = TelegramClient('bot', config["api_id"], config["api_hash"]).start(bot_token=BOT_TOKEN)
 
-# Plugin management
+
 PLUGINS_DIR = "plugins"
 
 if not os.path.exists(PLUGINS_DIR):
